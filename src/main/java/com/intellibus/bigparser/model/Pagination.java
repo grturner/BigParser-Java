@@ -1,5 +1,6 @@
 package com.intellibus.bigparser.model;
 
+
 import lombok.Data;
 
 @Data

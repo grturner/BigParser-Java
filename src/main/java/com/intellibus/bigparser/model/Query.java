@@ -1,18 +1,25 @@
 package com.intellibus.bigparser.model;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+
+import java.util.ArrayList;
 import java.util.Optional;
 
-public class Query<T> {
+@Data
+public class Query {
+    //TODO: Global Filters & Selected Columns Names, sendRowIds, pagination are tested and working
+    // additional testing of Column Filter, filter joins,
     private Optional<GlobalFilter> globalFilter;
-    private Optional<ColumnFilter> columnFilter;
+    private Optional<ColumnFilters> columnFilters;
     private Optional<JoinOperator> globalColumnFilterJoinOperator;
-    /**
-     * TODO: Still need to figure out keyof equivalent in Java
-     * Line 59 of types.ts
-     */
-    private Optional<T> selectColumnNames;
-    private Optional<SortType<GridDataModel>> sort;
+    //TODO: Validation on selectColumnNames.
+    private Optional<ArrayList<String>> selectColumnNames;
     private Optional<Pagination> pagination;
     private Optional<Boolean> sendRowIdsInResponse;
-    private Optional<Boolean> showColumnNamesInResponse;
+
+    // Disables Setter for showColumnNamesInResponse to force QueryResult to always have Column Names
+    @Setter(AccessLevel.NONE)
+    private Boolean showColumnNamesInResponse = true;
 }

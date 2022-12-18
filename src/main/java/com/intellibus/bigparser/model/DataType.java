@@ -5,5 +5,6 @@ public enum DataType {
     NUMBER,
     DATE,
     DATE_TIME,
-    BOOLEAN
+    BOOLEAN,
+    URL
 }
